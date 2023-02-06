@@ -1,5 +1,8 @@
 syntax = "proto3";
 
+
+option go_package="./;debug";
+
 service Debug {
 	rpc Log(LogRequest) returns (stream Record) {};
 	rpc Health(HealthRequest) returns (HealthResponse) {};
@@ -76,7 +79,7 @@ message TraceResponse {
 }
 
 
-enum SpanType {
+enum SpanTypes {
     INBOUND = 0;
     OUTBOUND = 1;
 }
@@ -96,7 +99,7 @@ message Span {
 	uint64 duration = 6;
 	// associated metadata
 	map<string,string> metadata = 7;
-	SpanType type = 8;
+	SpanTypes type = 8;
 }
 
 message CacheRequest {}
